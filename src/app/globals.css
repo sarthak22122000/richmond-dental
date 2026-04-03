@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+/* ─── Design tokens ──────────────────────────────────────────── */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --green-primary: #083703;
+  --green-medium: #0c6d00;
+  --green-light: #8bce83;
+  --green-very-light: #dcf0da;
+  --green-pale: #c5e7c1;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-green-primary: var(--green-primary);
+  --color-green-medium: var(--green-medium);
+  --color-green-light: var(--green-light);
+  --color-green-very-light: var(--green-very-light);
+  --color-green-pale: var(--green-pale);
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-sharp: 'Sharp Sans', 'Plus Jakarta Sans', sans-serif;
+  --font-montreal: 'Neue Montreal', 'Plus Jakarta Sans', sans-serif;
+}
+
+/* ─── Base ───────────────────────────────────────────────────── */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-sharp   { font-family: 'Sharp Sans',    'Plus Jakarta Sans', sans-serif; }
+.font-montreal{ font-family: 'Neue Montreal', 'Plus Jakarta Sans', sans-serif; }
+
+/* ─── Keyframes ──────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slideLeft {
+  from { opacity: 0; transform: translateX(-32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.90); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes marqueeReverse {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-7px); }
+}
+@keyframes kenBurns {
+  from { transform: scale(1); }
+  to   { transform: scale(1.06); }
+}
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+@keyframes arrowSlide {
+  0%   { transform: translateX(0); }
+  40%  { transform: translateX(5px); }
+  100% { transform: translateX(0); }
+}
+@keyframes dropdownOpen {
+  from { opacity: 0; transform: translateY(-8px) scaleY(0.95); }
+  to   { opacity: 1; transform: translateY(0) scaleY(1); }
+}
+@keyframes spinnerPulse {
+  0%,100% { opacity: 1; }
+  50%      { opacity: 0.4; }
+}
+
+/* ─── Utility animation classes ──────────────────────────────── */
+.animate-fade-up    { animation: fadeUp    0.65s cubic-bezier(.22,.68,0,1.2) forwards; }
+.animate-fade-down  { animation: fadeDown  0.55s cubic-bezier(.22,.68,0,1.2) forwards; }
+.animate-fade-in    { animation: fadeIn    0.55s ease-out forwards; }
+.animate-slide-left { animation: slideLeft 0.65s cubic-bezier(.22,.68,0,1.2) forwards; }
+.animate-slide-right{ animation: slideRight 0.65s cubic-bezier(.22,.68,0,1.2) forwards; }
+.animate-scale-in   { animation: scaleIn  0.55s cubic-bezier(.22,.68,0,1.2) forwards; }
+.animate-float      { animation: float    4s   ease-in-out infinite; }
+.animate-ken-burns  { animation: kenBurns 10s  ease-out forwards; }
+.animate-pulse-dot  { animation: pulseDot 2s   ease-in-out infinite; }
+.animate-dropdown   { animation: dropdownOpen 0.22s ease-out forwards; }
+
+/* Scroll-reveal default state – overridden by JS adding .in-view */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s cubic-bezier(.22,.68,0,1.2),
+              transform 0.65s cubic-bezier(.22,.68,0,1.2);
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-28px);
+  transition: opacity 0.65s cubic-bezier(.22,.68,0,1.2),
+              transform 0.65s cubic-bezier(.22,.68,0,1.2);
+}
+.reveal-left.in-view { opacity: 1; transform: translateX(0); }
+.reveal-right {
+  opacity: 0;
+  transform: translateX(28px);
+  transition: opacity 0.65s cubic-bezier(.22,.68,0,1.2),
+              transform 0.65s cubic-bezier(.22,.68,0,1.2);
+}
+.reveal-right.in-view { opacity: 1; transform: translateX(0); }
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.55s ease-out, transform 0.55s cubic-bezier(.22,.68,0,1.2);
+}
+.reveal-scale.in-view { opacity: 1; transform: scale(1); }
+
+/* ─── Marquee ────────────────────────────────────────────────── */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+}
+.marquee-track-reverse {
+  display: flex;
+  width: max-content;
+  animation: marqueeReverse 38s linear infinite;
+}
+.marquee-track:hover,
+.marquee-track-reverse:hover { animation-play-state: paused; }
+
+/* ─── Button helpers ─────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  font-family: 'Sharp Sans', 'Plus Jakarta Sans', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease, color 0.22s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn:hover { transform: scale(1.03); }
+.btn:active{ transform: scale(0.98); }
+
+.btn-primary {
+  background: var(--green-primary);
+  color: #fff;
+  padding: 15px 20px;
+}
+.btn-primary:hover {
+  background: var(--green-medium);
+  box-shadow: 0 8px 24px rgba(8,55,3,.28);
+}
+
+.btn-primary-lg {
+  background: var(--green-primary);
+  color: #fff;
+  padding: 20px 25px;
+}
+.btn-primary-lg:hover {
+  background: var(--green-medium);
+  box-shadow: 0 8px 24px rgba(8,55,3,.28);
+}
+
+.btn-outline {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 15px 20px;
+}
+.btn-outline:hover { background: rgba(255,255,255,.12); }
+
+.btn-outline-dark {
+  background: transparent;
+  color: var(--green-primary);
+  border: 1px solid var(--green-primary);
+  padding: 15px 20px;
+}
+.btn-outline-dark:hover { background: rgba(8,55,3,.06); }
+
+.btn-white {
+  background: #fff;
+  color: var(--green-primary);
+  padding: 15px 20px;
+}
+.btn-white:hover { background: #f0f0f0; box-shadow: 0 8px 24px rgba(0,0,0,.12); }
+
+/* Arrow nudge inside buttons */
+.btn .arrow {
+  display: inline-block;
+  transition: transform 0.22s ease;
+}
+.btn:hover .arrow { transform: translateX(4px); }
+
+/* ─── Nav dropdown ───────────────────────────────────────────── */
+.nav-dropdown {
+  transform-origin: top center;
+}
+
+/* ─── Image hover zoom ───────────────────────────────────────── */
+.img-zoom {
+  overflow: hidden;
+}
+.img-zoom img,
+.img-zoom > span > img {
+  transition: transform 0.6s cubic-bezier(.22,.68,0,1.2);
+}
+.img-zoom:hover img,
+.img-zoom:hover > span > img {
+  transform: scale(1.04);
+}
+
+/* ─── Service row hover ──────────────────────────────────────── */
+.service-row {
+  cursor: pointer;
+}
+.service-row .service-desc {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.3s ease;
+}
+.service-row:hover .service-desc,
+.service-row.open .service-desc {
+  max-height: 80px;
+  opacity: 1;
+}
+.service-row .service-name {
+  transition: color 0.2s;
+}
+.service-row:hover .service-name { color: var(--green-medium); }
+
+/* ─── Hide scrollbar ─────────────────────────────────────────── */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
