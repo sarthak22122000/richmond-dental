@@ -227,6 +227,11 @@ body {
   transform-origin: top center;
 }
 
+/* ─── Mega menu ──────────────────────────────────────────────── */
+.mega-menu {
+  transform-origin: top left;
+}
+
 /* ─── Image hover zoom ───────────────────────────────────────── */
 .img-zoom {
   overflow: hidden;
