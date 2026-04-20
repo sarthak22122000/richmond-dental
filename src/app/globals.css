@@ -268,3 +268,13 @@ body {
 /* ─── Hide scrollbar ─────────────────────────────────────────── */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ─── Aftercare hero responsive ─────────────────────────────── */
+@media (max-width: 768px) {
+  .aftercare-hero-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .aftercare-hero-grid > div:last-child {
+    height: 260px !important;
+  }
+}
